@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExperisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="IdAlumono" />
+    </Key>
+    <Property Name="IdAlumono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="250" />
+    <Property Name="Identificacion" Type="nvarchar" MaxLength="250" />
+    <Property Name="TipoIdentificacin" Type="nvarchar" MaxLength="4" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AlumonSemestre">
+    <Key>
+      <PropertyRef Name="IdAlumnoSemestre" />
+    </Key>
+    <Property Name="IdAlumono" Type="int" Nullable="false" />
+    <Property Name="IdSemestre" Type="int" Nullable="false" />
+    <Property Name="IdAlumnoSemestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Historial">
+    <Key>
+      <PropertyRef Name="IdHistorial" />
+    </Key>
+    <Property Name="IdHistorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Accion" Type="nvarchar" MaxLength="250" />
+    <Property Name="Quien" Type="nvarchar(max)" />
+    <Property Name="Aquien" Type="nvarchar(max)" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="FechaModificacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Materia">
+    <Key>
+      <PropertyRef Name="IdMateria" />
+    </Key>
+    <Property Name="IdMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="10" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Nota">
+    <Key>
+      <PropertyRef Name="IdNota" />
+    </Key>
+    <Property Name="IdNota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrimerNota" Type="float" />
+    <Property Name="SegundoNota" Type="float" />
+    <Property Name="TerceNota" Type="float" />
+    <Property Name="Promedio" Type="float" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="IdAlumno" Type="int" />
+    <Property Name="IdMateria" Type="int" />
+    <Property Name="IdProfesor" Type="int" />
+  </EntityType>
+  <EntityType Name="Profesor">
+    <Key>
+      <PropertyRef Name="IdProfesor" />
+    </Key>
+    <Property Name="IdProfesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="250" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Salon">
+    <Key>
+      <PropertyRef Name="IdSalon" />
+    </Key>
+    <Property Name="IdSalon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdMateria" Type="int" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Semestre">
+    <Key>
+      <PropertyRef Name="IdSemestre" />
+    </Key>
+    <Property Name="IdSemestre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="250" />
+    <Property Name="Periodo" Type="nvarchar" MaxLength="250" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SemestreMateria">
+    <Key>
+      <PropertyRef Name="IdSemestreMateria" />
+    </Key>
+    <Property Name="IdSemestre" Type="int" Nullable="false" />
+    <Property Name="IdMateria" Type="int" Nullable="false" />
+    <Property Name="IdSemestreMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_AlumonSemestre_Alumno1">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="AlumonSemestre" Type="Self.AlumonSemestre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="IdAlumono" />
+      </Principal>
+      <Dependent Role="AlumonSemestre">
+        <PropertyRef Name="IdAlumono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlumonSemestre_Semestre1">
+    <End Role="Semestre" Type="Self.Semestre" Multiplicity="1" />
+    <End Role="AlumonSemestre" Type="Self.AlumonSemestre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semestre">
+        <PropertyRef Name="IdSemestre" />
+      </Principal>
+      <Dependent Role="AlumonSemestre">
+        <PropertyRef Name="IdSemestre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nota_Alumno">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="0..1" />
+    <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="IdAlumono" />
+      </Principal>
+      <Dependent Role="Nota">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nota_Materia">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+    <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="Nota">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nota_Profesor">
+    <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
+    <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesor">
+        <PropertyRef Name="IdProfesor" />
+      </Principal>
+      <Dependent Role="Nota">
+        <PropertyRef Name="IdProfesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salon_Materia">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+    <End Role="Salon" Type="Self.Salon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="Salon">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SemestreMateria_Materia">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+    <End Role="SemestreMateria" Type="Self.SemestreMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="SemestreMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SemestreMateria_Semestre">
+    <End Role="Semestre" Type="Self.Semestre" Multiplicity="1" />
+    <End Role="SemestreMateria" Type="Self.SemestreMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Semestre">
+        <PropertyRef Name="IdSemestre" />
+      </Principal>
+      <Dependent Role="SemestreMateria">
+        <PropertyRef Name="IdSemestre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExperisDBModelStoreContainer">
+    <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlumonSemestre" EntityType="Self.AlumonSemestre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Historial" EntityType="Self.Historial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nota" EntityType="Self.Nota" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profesor" EntityType="Self.Profesor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Semestre" EntityType="Self.Semestre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SemestreMateria" EntityType="Self.SemestreMateria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AlumonSemestre_Alumno1" Association="Self.FK_AlumonSemestre_Alumno1">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="AlumonSemestre" EntitySet="AlumonSemestre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlumonSemestre_Semestre1" Association="Self.FK_AlumonSemestre_Semestre1">
+      <End Role="Semestre" EntitySet="Semestre" />
+      <End Role="AlumonSemestre" EntitySet="AlumonSemestre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nota_Alumno" Association="Self.FK_Nota_Alumno">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="Nota" EntitySet="Nota" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nota_Materia" Association="Self.FK_Nota_Materia">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="Nota" EntitySet="Nota" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nota_Profesor" Association="Self.FK_Nota_Profesor">
+      <End Role="Profesor" EntitySet="Profesor" />
+      <End Role="Nota" EntitySet="Nota" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salon_Materia" Association="Self.FK_Salon_Materia">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="Salon" EntitySet="Salon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SemestreMateria_Materia" Association="Self.FK_SemestreMateria_Materia">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="SemestreMateria" EntitySet="SemestreMateria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SemestreMateria_Semestre" Association="Self.FK_SemestreMateria_Semestre">
+      <End Role="Semestre" EntitySet="Semestre" />
+      <End Role="SemestreMateria" EntitySet="SemestreMateria" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

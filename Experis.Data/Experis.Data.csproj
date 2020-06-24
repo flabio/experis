@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{240669A8-3396-4881-8F89-F1A704D848D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Experis.Data</RootNamespace>
+    <AssemblyName>Experis.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consulta\AlumnoConsulta.cs" />
+    <Compile Include="Consulta\MateriaConsulta.cs" />
+    <Compile Include="Consulta\NotaConsulta.cs" />
+    <Compile Include="Consulta\ProfesorConsulta.cs" />
+    <Compile Include="Consulta\SalonConsulta.cs" />
+    <Compile Include="Consulta\SemestreConsulta.cs" />
+    <Compile Include="DAL\AlumnoDAL.cs" />
+    <Compile Include="DAL\MateriaDAL.cs" />
+    <Compile Include="DAL\NotaDAL.cs" />
+    <Compile Include="DAL\ProfesorDAL.cs" />
+    <Compile Include="DAL\SalonDAL.cs" />
+    <Compile Include="DAL\SemestreDAL.cs" />
+    <Compile Include="Entidades\Alumno.cs" />
+    <Compile Include="Entidades\Materia.cs" />
+    <Compile Include="Entidades\Nota.cs" />
+    <Compile Include="Entidades\Profesor.cs" />
+    <Compile Include="Entidades\Salon.cs" />
+    <Compile Include="Entidades\Semestre.cs" />
+    <Compile Include="models\Alumno.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\AlumonSemestre.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Historial.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Materia.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\ModelExperis.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelExperis.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\ModelExperis.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\ModelExperis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelExperis.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="models\Nota.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Profesor.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Salon.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Semestre.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\SemestreMateria.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\sysdiagrams.cs">
+      <DependentUpon>ModelExperis.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="models\ModelExperis.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelExperis.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="models\ModelExperis.edmx.diagram">
+      <DependentUpon>ModelExperis.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Experis.UI\Experis.UI.csproj">
+      <Project>{F91062C5-E617-481F-9E7D-51FC0E99E1F8}</Project>
+      <Name>Experis.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="models\ModelExperis.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelExperis.edmx</DependentUpon>
+      <LastGenOutput>ModelExperis.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="models\ModelExperis.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelExperis.edmx</DependentUpon>
+      <LastGenOutput>ModelExperis.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
